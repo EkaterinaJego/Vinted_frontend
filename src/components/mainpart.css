@@ -1,0 +1,23 @@
+.mainpartbody {
+  margin-top: 45px;
+  height: 600px;
+}
+
+img {
+  width: 100%;
+
+  object-fit: cover;
+  position: absolute;
+  z-index: 1;
+}
+
+.incitation {
+  width: 410px;
+  height: 270px;
+  position: relative;
+  top: 74px;
+  left: 99px;
+  z-index: 10;
+  background-color: white;
+  border-radius: 5px;
+}

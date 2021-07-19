@@ -1,0 +1,46 @@
+.mainHeader {
+  margin: 0 60px;
+  display: flex;
+}
+
+.Logo {
+  width: 104px;
+  height: 45px;
+  margin-top: 35px;
+  margin-right: 60px;
+}
+
+input {
+  width: 623px;
+  height: 39px;
+  background-color: #f5f6f7;
+  border: none;
+}
+
+button {
+  margin-top: 45px;
+  border-radius: 10px;
+  width: 115px;
+  height: 30px;
+  font-family: Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+    sans-serif;
+  font-size: 12px;
+}
+
+.inscriptionButton {
+  margin-left: 60px;
+  margin-right: 20px;
+  color: #2da8b1;
+  border: solid 0.5px #2da8b1;
+}
+
+.connexionButton {
+  margin-right: 60px;
+  color: #2da8b1;
+  border: solid 0.5px #2da8b1;
+}
+
+.venteButton {
+  background-color: #2da8b1;
+  color: white;
+}

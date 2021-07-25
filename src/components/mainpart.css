@@ -1,11 +1,11 @@
 .mainpartbody {
   margin-top: 45px;
-  height: 600px;
+  height: 455px;
 }
 
 img {
   width: 100%;
-
+  height: 455px;
   object-fit: cover;
   position: absolute;
   z-index: 1;

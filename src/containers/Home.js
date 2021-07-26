@@ -5,7 +5,7 @@ import axios from "axios";
 import Header from "../components/Header";
 import Mainpart from "../components/Mainpart";
 import Item from "../components/Item";
-import "../components/home.css";
+import "./home.css";
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);

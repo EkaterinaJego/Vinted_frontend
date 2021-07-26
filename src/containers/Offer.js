@@ -9,15 +9,14 @@ const Offer = (props) => {
   const [info, setInfo] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
-  const fetchData = async () => {
-    const result = await axios.get(
-      `https://lereacteur-vinted-api.herokuapp.com/offer/${id}`
-    );
-    setInfo(result.data);
-    setIsLoading(false);
-  };
-
   useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios.get(
+        `https://lereacteur-vinted-api.herokuapp.com/offer/${id}`
+      );
+      setInfo(result.data);
+      setIsLoading(false);
+    };
     fetchData();
   }, []);
 

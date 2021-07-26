@@ -4,10 +4,13 @@ import Offer from "./containers/Offer";
 import Home from "./containers/Home";
 import Signup from "./containers/Signup";
 import Login from "./containers/Login";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faSearch, faList } from "@fortawesome/free-solid-svg-icons";
+library.add(faSearch, faList);
 
 export default function App() {
   return (
-    <Router>
+    <Router className="container">
       <Switch>
         <Route path="/offer/:id">
           <Offer />

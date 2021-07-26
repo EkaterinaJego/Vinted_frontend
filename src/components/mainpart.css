@@ -1,6 +1,8 @@
 .mainpartbody {
   margin-top: 45px;
   height: 455px;
+  width: 100%;
+  margin-right: 0px;
 }
 
 img {
@@ -16,8 +18,45 @@ img {
   height: 270px;
   position: relative;
   top: 74px;
-  left: 99px;
+  left: 20px;
   z-index: 10;
   background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* justify-content: flex-start; */
+}
+
+.incitation h1 {
+  flex: 1;
+  text-align: left;
+  align-items: center;
+  margin-top: 50px;
+  padding-left: 4%;
+  padding-right: 4%;
+  font-size: 34px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.incitbutton {
+  flex: 1;
+  padding-top: 10%;
+  padding-left: 4%;
+  padding-right: 4%;
+}
+
+.incitbutton button {
+  width: 164px;
+  height: 44px;
+  background-color: #2da8b1;
+  color: white;
+  border: none;
   border-radius: 5px;
+}
+
+@media (max-width: 720px) {
+  .incitation {
+    display: none;
+  }
 }

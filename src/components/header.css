@@ -1,46 +1,117 @@
-.mainHeader {
-  margin: 0 60px;
+.main {
+  width: 100%;
+  padding-left: 2%;
+  padding-right: 2%;
+  box-sizing: border-box;
+}
+
+.headerbody {
   display: flex;
+  flex-direction: row;
+  height: 120px;
 }
 
-.Logo {
-  width: 104px;
-  height: 45px;
-  margin-top: 35px;
+.logo {
+  flex: 1;
+  height: 120px;
+}
+
+.logo img {
+  width: 10%;
+  height: 10%;
+  object-fit: contain;
   margin-right: 60px;
+  margin-left: 10px;
+  margin-bottom: 1%;
 }
 
-input {
-  width: 623px;
-  height: 39px;
+.searchbar {
+  width: 630px;
+  margin-top: 10px;
+  margin-left: 50px;
+  height: 40px;
   background-color: #f5f6f7;
   border: none;
+  flex: 3;
+  position: relative;
 }
 
-button {
-  margin-top: 45px;
-  border-radius: 10px;
-  width: 115px;
-  height: 30px;
+.searchicon {
+  opacity: 0.5;
+  position: absolute;
+  top: 10px;
+}
+
+.searchbar input {
+  width: 100%;
+  height: 100%;
+  padding-left: 20px;
+}
+
+.threebuttons {
+  display: flex;
+
+  flex-direction: row;
+  justify-content: space-around;
   font-family: Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
     sans-serif;
-  font-size: 12px;
+  margin-top: 45px;
+  height: 35px;
 }
-
 .inscriptionButton {
-  margin-left: 60px;
-  margin-right: 20px;
+  margin-left: 30px;
+  width: 115px;
+  height: 100%;
+  border-radius: 7px;
+  margin-right: 10px;
   color: #2da8b1;
   border: solid 0.5px #2da8b1;
 }
 
 .connexionButton {
+  margin-left: 20px;
+  width: 115px;
+  height: 100%;
+  border-radius: 7px;
   margin-right: 60px;
   color: #2da8b1;
   border: solid 0.5px #2da8b1;
 }
 
 .venteButton {
+  width: 115px;
+  height: 100%;
+  border-radius: 7px;
   background-color: #2da8b1;
   color: white;
+}
+
+@media (max-width: 1330px) {
+  .searchbar {
+    width: 500px;
+  }
+  .main {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .headerbody {
+    height: 100px;
+  }
+  .logo img {
+    height: 90px;
+  }
+}
+
+@media (max-width: 960px) {
+  .searchbar,
+  .threebuttons {
+    display: none;
+  }
+
+  .logo img {
+    height: 49px;
+  }
+  .headerbody {
+    height: 90px;
+  }
 }

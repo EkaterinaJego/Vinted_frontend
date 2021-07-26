@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "./item.css";
 
 const Item = ({ offers }) => {
   return (
@@ -7,7 +8,6 @@ const Item = ({ offers }) => {
         return (
           <Link to={`/offer/${offer._id}`}>
             <div className="item" key={offer._id}>
-              {/* console.log({offer._id}) */}
               <div className="offer-info">
                 <div>{offer.product_name}</div>
                 <div>{offer._id}</div>

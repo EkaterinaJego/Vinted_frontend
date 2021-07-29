@@ -1,4 +1,5 @@
 import logo from "../images/logoVinted.png";
+import ResearchBar from "./ResearchBar";
 import "./header.css";
 import { Link } from "react-router-dom";
 import {
@@ -7,28 +8,43 @@ import {
   FontAwesomeIcon,
 } from "@fortawesome/react-fontawesome";
 
-const Header = () => {
+const Header = ({
+  token,
+  handleLogout,
+  offers,
+  setFilteredOffers,
+  handleSearch,
+}) => {
   return (
     <div className="main">
       <div className="headerbody">
         <div className="logo">
           <Link to="/">
-            <img src={logo} alt="vintedlogo" />
+            <img src={logo} className="logoimg" alt="vintedlogo" />
           </Link>
         </div>
-        <div className="searchbar">
-          <FontAwesomeIcon icon="search" className="searchicon" />
-          <input type="text" placeholder="Recherche des articles" />{" "}
-        </div>
+        <ResearchBar
+          offers={offers}
+          setFilteredOffers={setFilteredOffers}
+          handleSearch={handleSearch}
+        />
         <div className="threebuttons">
-          <div className="signuploginbuttons">
-            <Link to="/user/signup">
-              <button className="inscriptionButton">S'inscrire</button>
-            </Link>
-            <Link to="/user/login">
-              <button className="connexionButton">Se connecter</button>
-            </Link>
-          </div>
+          {token ? (
+            <div>
+              <button className="logoutbutton" onClick={handleLogout}>
+                Se déconnecter
+              </button>
+            </div>
+          ) : (
+            <div className="signuploginbuttons">
+              <Link to="/user/signup">
+                <button className="inscriptionButton">S'inscrire</button>
+              </Link>
+              <Link to="/user/login">
+                <button className="connexionButton">Se connecter</button>
+              </Link>
+            </div>
+          )}
           <button className="venteButton">Vends tes articles</button>
         </div>
       </div>

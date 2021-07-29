@@ -1,14 +1,13 @@
 .item {
-  border: solid 1px black;
   width: 235px;
-  height: 490px;
+  height: 420px;
+  box-sizing: border-box;
   flex-direction: row;
   flex-wrap: wrap;
   margin-left: 4px;
   margin-right: 4px;
   padding-right: 3px;
   padding-left: 3px;
-  background-color: red;
   justify-content: center;
   align-items: center;
 }
@@ -26,10 +25,26 @@
   /* justify-content: space-between; */
 }
 
+.offer-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: grey;
+  width: 100%;
+  font-size: 1.1rem;
+}
+
 .offer-image {
   object-fit: contain;
-  width: 180px;
-  height: 300px;
-  margin-bottom: 50px;
-  margin-top: 30px;
+  width: 100%;
+}
+
+.offer-userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: grey;
+  font-size: 0.9rem;
 }

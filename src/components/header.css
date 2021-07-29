@@ -16,9 +16,9 @@
   height: 120px;
 }
 
-.logo img {
-  width: 10%;
-  height: 10%;
+.logoimg {
+  width: 60%;
+  height: 60%;
   object-fit: contain;
   margin-right: 60px;
   margin-left: 10px;
@@ -97,8 +97,10 @@
   .headerbody {
     height: 100px;
   }
-  .logo img {
-    height: 90px;
+  .logoimg {
+    width: 90%;
+    margin-left: 0px;
+    padding-left: 0px;
   }
 }
 
@@ -108,8 +110,13 @@
     display: none;
   }
 
-  .logo img {
-    height: 49px;
+  .logoimg {
+    width: 20%;
+    height: 40%;
+    margin-right: 0px;
+    padding-left: 0px;
+    margin-left: 0px;
+    margin-bottom: 1%;
   }
   .headerbody {
     height: 90px;

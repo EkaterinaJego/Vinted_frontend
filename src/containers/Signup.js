@@ -1,38 +1,32 @@
-import React from "react";
 import { useState } from "react";
 import axios from "axios";
-import Header from "../components/Header";
-import Cookies from "js-cookie";
+import { Link } from "react-router-dom";
 
-const Signup = () => {
+const Signup = ({ handleLogin }) => {
   const [email, setEmail] = useState();
   const [phone, setPhone] = useState();
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
 
   const handleEmail = (event) => {
-    const value = event.target.value;
-    setEmail(value);
+    setEmail(event.target.value);
   };
 
   const handlePhone = (event) => {
-    const value = event.target.value;
-    setPhone(value);
+    setPhone(event.target.value);
   };
 
   const handleUsername = (event) => {
-    const value = event.target.value;
-    setUsername(value);
+    setUsername(event.target.value);
   };
 
   const handlePassword = (event) => {
-    const value = event.target.value;
-    setPassword(value);
+    setPassword(event.target.value);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const fetchData = async () => {
+  const handleSubmit = async (event) => {
+    try {
+      event.preventDefault();
       const response = await axios.post(
         "https://lereacteur-vinted-api.herokuapp.com/user/signup",
         {
@@ -42,24 +36,22 @@ const Signup = () => {
           password: password,
         }
       );
-      if (response) {
-        const token = response.data.token;
-        Cookies.set("token", token, { expires: 7 });
+      if (response.data.token) {
+        handleLogin(response.data.token);
         alert(`Bienvenu sur le site, ${username}`);
         setEmail("");
         setPassword("");
         setUsername("");
         setPhone("");
-      } else if (!response) {
-        return alert("Your registration is impossible");
       }
-    };
-    fetchData();
+    } catch (error) {
+      console.log(error);
+      alert(error);
+    }
   };
 
   return (
     <>
-      <Header />
       <div className="formulaire">
         <form
           onSubmit={handleSubmit}
@@ -85,7 +77,7 @@ const Signup = () => {
             onChange={handlePhone}
           />
           <input
-            type="text"
+            type="email"
             placeholder="Adresse email"
             value={email}
             onChange={handleEmail}
@@ -99,12 +91,13 @@ const Signup = () => {
           <input type="checkbox" />
           <label>S'inscrire à la newsletter</label>
           <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos
-            aperiam velit beatae quis sint inventore earum neque, vero quibusdam
-            impedit ullam non asperiores. Vitae, iste voluptatibus veritatis
-            dolorum eligendi omnis!
+            En m'inscrivant je confirme avoir lu et accepté les Termes,
+            Conditions et Politique de Confidentialité de Vinted. Je confirme
+            avoir au moins 18 ans.
           </p>
           <button type="submit">Submit</button>
+          Vous avez déjà un compte ?
+          <Link to="/user/login"> Connectez-vous</Link>
         </form>
       </div>
     </>

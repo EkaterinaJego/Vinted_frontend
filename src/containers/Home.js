@@ -1,27 +1,17 @@
 import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
-import axios from "axios";
+
 import Mainpart from "../components/Mainpart";
 import Items from "../components/Items";
 import "./home.css";
 
-const Home = ({ offers, setOffers, setFilteredOffers, filteredOffers }) => {
-  const [isLoading, setIsLoading] = useState(true);
-
-  const fetchData = async () => {
-    const response = await axios.get(
-      "https://lereacteur-vinted-api.herokuapp.com/offers"
-    );
-    setOffers(response.data.offers);
-    setFilteredOffers();
-    setIsLoading(false);
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
+const Home = ({
+  offers,
+  setOffers,
+  title,
+  setTitle,
+  isLoading,
+  setIsLoading,
+}) => {
   return (
     <>
       {isLoading ? (
@@ -29,11 +19,7 @@ const Home = ({ offers, setOffers, setFilteredOffers, filteredOffers }) => {
       ) : (
         <div>
           <Mainpart />
-          <Items
-            offers={offers}
-            setOffers={setOffers}
-            filteredOffers={filteredOffers}
-          />
+          <Items offers={offers} setOffers={setOffers} />
         </div>
       )}
     </>

@@ -1,5 +1,4 @@
 import logo from "../images/logoVinted.png";
-import ResearchBar from "./ResearchBar";
 import "./header.css";
 import { Link } from "react-router-dom";
 import {
@@ -11,9 +10,19 @@ import {
 const Header = ({
   token,
   handleLogout,
-  offers,
-  setFilteredOffers,
-  handleSearch,
+  title,
+  handleTitle,
+  // priceMin,
+  // priceMax,
+  // setPriceMin,
+  // setPriceMax,
+  handlePriceMin,
+  handlePriceMax,
+  setSort,
+  handleSortAsc,
+  handleSortDesc,
+  setSwitchValue,
+  switchValue,
 }) => {
   return (
     <div className="main">
@@ -23,11 +32,29 @@ const Header = ({
             <img src={logo} className="logoimg" alt="vintedlogo" />
           </Link>
         </div>
-        <ResearchBar
-          offers={offers}
-          setFilteredOffers={setFilteredOffers}
-          handleSearch={handleSearch}
-        />
+        <div className="filters">
+          <div></div>
+          <div className="search">
+            <FontAwesomeIcon icon="search" className="searchicon" />
+            <input
+              type="text"
+              placeholder="Recherche des articles"
+              onChange={handleTitle}
+              value={title}
+            />
+          </div>
+          <input
+            className="priceMinMax"
+            type="number"
+            onChange={handlePriceMin}
+          />
+          <input
+            className="priceMinMax"
+            type="number"
+            onChange={handlePriceMax}
+          />
+        </div>
+
         <div className="threebuttons">
           {token ? (
             <div>

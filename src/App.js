@@ -1,8 +1,10 @@
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import axios from "axios";
 import Cookies from "js-cookie";
 import Header from "./components/Header";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Offer from "./containers/Offer";
 import Home from "./containers/Home";
 import Signup from "./containers/Signup";
@@ -12,10 +14,27 @@ import { faSearch, faList } from "@fortawesome/free-solid-svg-icons";
 library.add(faSearch, faList);
 
 export default function App() {
+  // const { price-desc } = useParams();
+  // const { price-asc } = useParams()
   const [token, setToken] = useState(Cookies.get("token") || "");
-
+  const [title, setTitle] = useState("");
   const [offers, setOffers] = useState();
-  const [filteredOffers, setFilteredOffers] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+  const [priceMin, setPriceMin] = useState(0);
+  const [priceMax, setPriceMax] = useState(500);
+  const [sort, setSort] = useState("");
+  const [switchValue, setSwitchValue] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get(
+        `https://lereacteur-vinted-api.herokuapp.com/offers?title=${title}&priceMin=${priceMin}&priceMax=${priceMax}&sort=${sort}`
+      );
+      setOffers(response.data.offers);
+      setIsLoading(false);
+    };
+    fetchData();
+  }, [title, priceMin, priceMax, sort]);
 
   const handleLogin = (token) => {
     Cookies.set("token", token);
@@ -27,13 +46,34 @@ export default function App() {
     setToken("");
   };
 
-  const handleSearch = (event) => {
-    console.log(event.target.value);
-    let result = [];
-    result = offers.filter((offer) => {
-      return offer.product_name.search(event.target.value) !== -1;
-    });
-    setFilteredOffers(result);
+  const handleTitle = (event) => {
+    setTitle(event.target.value);
+  };
+
+  const handlePriceMax = (event) => {
+    setPriceMax(event.target.value);
+  };
+
+  const handlePriceMin = (event) => {
+    setPriceMin(event.target.value);
+  };
+
+  const handleToggle = () => {
+    if (switchValue === false) {
+      setSwitchValue(true);
+      handleSortAsc();
+    } else {
+      setSwitchValue(false);
+      handleSortDesc();
+    }
+  };
+
+  const handleSortAsc = () => {
+    setSort("price-asc");
+  };
+
+  const handleSortDesc = () => {
+    setSort("price-desc");
   };
 
   return (
@@ -43,9 +83,20 @@ export default function App() {
         handleLogout={handleLogout}
         offers={offers}
         setOffers={setOffers}
-        filteredOffers={filteredOffers}
-        setFilteredOffers={setFilteredOffers}
-        handleSearch={handleSearch}
+        title={title}
+        handleTitle={handleTitle}
+        // priceMax={priceMax}
+        // priceMin={priceMin}
+        // setPriceMin={setPriceMin}
+        // setPriceMax={setPriceMax}
+        handlePriceMax={handlePriceMax}
+        handlePriceMin={handlePriceMin}
+        setSort={setSort}
+        swithValue={switchValue}
+        setSwitchValue={setSwitchValue}
+        handleToggle={handleToggle}
+        handleSortAsc={handleSortAsc}
+        handleSortDesc={handleSortDesc}
       />
       <Switch>
         <Route path="/offer/:id">
@@ -61,9 +112,10 @@ export default function App() {
           <Home
             offers={offers}
             setOffers={setOffers}
-            filteredOffers={filteredOffers}
-            setFilteredOffers={setFilteredOffers}
-            handleSearch={handleSearch}
+            title={title}
+            setTitle={setTitle}
+            isLoading={isLoading}
+            setIsLoading={setIsLoading}
           />
         </Route>
       </Switch>

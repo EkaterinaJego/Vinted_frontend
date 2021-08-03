@@ -1,10 +1,10 @@
 import logo from "../images/logoVinted.png";
 import "./header.css";
 import { Range } from "react-range";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
-  faSearch,
-  faLIst,
+  // faSearch,
+  // faLIst,
   FontAwesomeIcon,
 } from "@fortawesome/react-fontawesome";
 

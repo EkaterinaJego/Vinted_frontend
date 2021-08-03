@@ -3,7 +3,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  useHistory,
   Redirect,
 } from "react-router-dom";
 import axios from "axios";
@@ -20,13 +19,11 @@ import { faSearch, faList } from "@fortawesome/free-solid-svg-icons";
 library.add(faSearch, faList);
 
 export default function App() {
-  // let history = useHistory();
   const [token, setToken] = useState(Cookies.get("token") || "");
   const [title, setTitle] = useState("");
   const [offers, setOffers] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [rangeValues, setRangeValues] = useState([0, 100]);
-  // const [rangeFinalValues, setFinalRangeValues] = useState(0, 100);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,13 +43,13 @@ export default function App() {
   const handleLogin = (token) => {
     Cookies.set("token", token);
     setToken(token);
+    <Redirect to="/" />;
   };
 
   const handleLogout = () => {
     Cookies.remove("token");
     setToken("");
-
-    <Redirect to="/publish" />;
+    <Redirect to="/" />;
   };
 
   const handleTitle = (event) => {
@@ -64,8 +61,6 @@ export default function App() {
       <Header
         token={token}
         handleLogout={handleLogout}
-        offers={offers}
-        setOffers={setOffers}
         title={title}
         handleTitle={handleTitle}
         handleRange={handleRange}
@@ -82,17 +77,10 @@ export default function App() {
           <Login handleLogin={handleLogin} />
         </Route>
         <Route path="/publish">
-          <Publish token={token} />
+          <Publish token={token} setToken={setToken} />
         </Route>
         <Route exact path="/">
-          <Home
-            offers={offers}
-            setOffers={setOffers}
-            title={title}
-            setTitle={setTitle}
-            isLoading={isLoading}
-            setIsLoading={setIsLoading}
-          />
+          <Home offers={offers} setOffers={setOffers} isLoading={isLoading} />
         </Route>
       </Switch>
     </Router>

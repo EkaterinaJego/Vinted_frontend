@@ -1,6 +1,6 @@
 import Product from "../components/Product";
 
-const Offer = (props) => {
+const Offer = () => {
   return (
     <div>
       <Product />

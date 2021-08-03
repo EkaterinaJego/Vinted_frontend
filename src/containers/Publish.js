@@ -2,9 +2,11 @@ import React from "react";
 import "../components/publish.css";
 import { useState } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const Publish = ({ token }) => {
-  console.log("Token :", `${token}`);
+  console.log("Token :", token);
+  const history = useHistory();
 
   const [artTitle, setArtTitle] = useState("");
   const [artDescription, setArtDescription] = useState("");
@@ -15,7 +17,6 @@ const Publish = ({ token }) => {
   const [artSize, setArtSize] = useState("");
   const [artColor, setArtColor] = useState("");
   const [file, setFile] = useState({});
-  const [img, setImg] = useState();
 
   const handleArtTitle = (event) => {
     setArtTitle(event.target.value);
@@ -51,40 +52,47 @@ const Publish = ({ token }) => {
     setFile(event.target.files[0]);
   };
 
-  const handleSubmitAnnonce = async (event) => {
+  const handleSubmitAnnounce = async (event) => {
     event.preventDefault();
-    const formData = new FormData();
-    formData.append("files", file);
-    formData.append("title", artTitle);
-    formData.append("description", artDescription);
-    formData.append("price", artPrice);
-    formData.append("size", artSize);
-    formData.append("city", artCity);
-    formData.append("condition", artCondition);
-    formData.append("color", artColor);
-    formData.append("brand", artBrand);
-
     try {
+      const formData = new FormData();
+      formData.append("title", artTitle);
+      formData.append("description", artDescription);
+      formData.append("price", artPrice);
+      formData.append("condition", artCondition);
+      formData.append("brand", artBrand);
+      formData.append("size", artSize);
+      formData.append("city", artCity);
+      formData.append("color", artColor);
+      formData.append("picture", file);
+      console.log("file)) = ", file);
+
+      // console.log("artTitle) = ", artTitle);
+      // console.log("formData = ", formData);
+      // console.log("token = ", token);
       const response = await axios.post(
         "https://lereacteur-vinted-api.herokuapp.com/offer/publish",
         formData,
         {
-          Headers: {
+          headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "multipart/form-data",
           },
         }
       );
-      setImg(response.data);
+      console.log("response = ", response);
+      if (response.status === 200) {
+        history.push(`/offer/${response.data._id}`);
+      }
     } catch (error) {
-      alert(error);
+      console.log("ERREUR : ", error);
     }
   };
 
   return (
     <div className="publish-page">
       <div className="vendsincit">Vends ton article</div>
-      <form onSubmit={handleSubmitAnnonce}>
+      <form onSubmit={handleSubmitAnnounce}>
         <div className="uploadimg">
           <input
             type="file"
@@ -92,7 +100,7 @@ const Publish = ({ token }) => {
             placeholder="Ajoute une photo"
             onChange={handleArtImg}
           />
-          {img && <img src={img} alt="img" />}
+          {file && <img src={file} alt="img" />}
         </div>
         <div className="description">
           <input
@@ -100,12 +108,14 @@ const Publish = ({ token }) => {
             placeholder="Titre"
             onChange={handleArtTitle}
             value={artTitle}
+            required
           />
           <input
             type="text"
             placeholder="Décris ton article"
             onChange={handleArtDescription}
             value={artDescription}
+            required
           />
         </div>
 
@@ -117,28 +127,32 @@ const Publish = ({ token }) => {
             value={artBrand}
           />
           <input
-            type="text"
+            type="number"
             placeholder="Taille"
             onChange={handleArtSize}
             value={artSize}
+            required
           />
           <input
             type="text"
             placeholder="Couleur"
             onChange={handleArtColor}
             value={artColor}
+            required
           />
           <input
             type="text"
             placeholder="Etat"
             onChange={handleArtCondition}
             value={artCondition}
+            required
           />
           <input
             type="text"
             placeholder="Lieu"
             onChange={handleArtCity}
             value={artCity}
+            required
           />
         </div>
 
@@ -148,9 +162,9 @@ const Publish = ({ token }) => {
             placeholder="Price"
             onChange={handleArtPrice}
             value={artPrice}
+            required
           />
         </div>
-
         <button type="submit">Ajouter</button>
       </form>
     </div>

@@ -3,14 +3,7 @@ import Mainpart from "../components/Mainpart";
 import Items from "../components/Items";
 import "../components/home.css";
 
-const Home = ({
-  offers,
-  setOffers,
-  title,
-  setTitle,
-  isLoading,
-  setIsLoading,
-}) => {
+const Home = ({ offers, setOffers, isLoading }) => {
   return (
     <>
       {isLoading ? (

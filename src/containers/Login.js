@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 
-const Login = ({ handleLogin, setLogens }) => {
+const Login = ({ handleLogin }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
@@ -23,18 +23,17 @@ const Login = ({ handleLogin, setLogens }) => {
           "https://lereacteur-vinted-api.herokuapp.com/user/login",
           { email: email, password: password }
         );
-      }
-      if (response.data.token) {
-        const token = Cookies.set("token", response.data.token);
-        const username = response.data.account.username;
-        handleLogin(token);
-        console.log(`Welcome back, ${username}!`);
-        console.log(Cookies.get("userToken"));
-        setEmail("");
-        setPassword("");
+        if (response.data.token) {
+          const token = Cookies.set("token", response.data.token);
+          const username = response.data.account.username;
+          handleLogin(token);
+          console.log(`Welcome back, ${username}!`);
+          setEmail("");
+          setPassword("");
+        }
       }
     } catch (error) {
-      alert(error);
+      console.log("erreur : ", error.response);
     }
   };
 

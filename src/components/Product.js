@@ -18,7 +18,7 @@ const Product = (props) => {
       setIsLoading(false);
     };
     fetchData();
-  }, []);
+  }, [id]);
 
   return (
     <div className="product-body">

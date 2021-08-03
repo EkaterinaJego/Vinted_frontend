@@ -70,19 +70,12 @@ const Publish = ({ token }) => {
         formData,
         {
           Headers: {
-            Authorization: "Bearer " + token,
+            Authorization: `Bearer ${token}`,
             "Content-Type": "multipart/form-data",
           },
         }
       );
       setImg(response.data);
-      // setArtBrand(response.data)
-      // setArtCity(response.data)
-      // setArtColor(response.data)
-      // setArtCondition(response.data)
-      // setArtPrice(response.data)
-      // setArtSize(response.data)
-      // setArtTitle(response.data)
     } catch (error) {
       alert(error);
     }

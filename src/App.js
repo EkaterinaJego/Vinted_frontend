@@ -20,22 +20,13 @@ import { faSearch, faList } from "@fortawesome/free-solid-svg-icons";
 library.add(faSearch, faList);
 
 export default function App() {
-  let history = useHistory();
+  // let history = useHistory();
   const [token, setToken] = useState(Cookies.get("token") || "");
   const [title, setTitle] = useState("");
   const [offers, setOffers] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [rangeValues, setRangeValues] = useState([0, 100]);
   // const [rangeFinalValues, setFinalRangeValues] = useState(0, 100);
-  // const [sort, setSort] = useState(false);
-  // const [artTitle, setArtTitle] = useState("");
-  // const [artDescription, setArtDescription] = useState("");
-  // const [artPrice, setArtPrice] = useState("");
-  // const [artCondition, setArtCondition] = useState("");
-  // const [artCity, setArtCity] = useState("");
-  // const [artBrand, setArtBrand] = useState("");
-  // const [artSize, setArtSize] = useState("");
-  // const [artColor, setArtColor] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,7 +45,7 @@ export default function App() {
 
   const handleLogin = (token) => {
     Cookies.set("token", token);
-    setToken("token");
+    setToken(token);
   };
 
   const handleLogout = () => {

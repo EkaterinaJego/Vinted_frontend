@@ -1,6 +1,7 @@
 import logo from "../images/logoVinted.png";
 import "./header.css";
-import { Link } from "react-router-dom";
+import { Range } from "react-range";
+import { Link, Redirect } from "react-router-dom";
 import {
   faSearch,
   faLIst,
@@ -12,17 +13,8 @@ const Header = ({
   handleLogout,
   title,
   handleTitle,
-  // priceMin,
-  // priceMax,
-  // setPriceMin,
-  // setPriceMax,
-  handlePriceMin,
-  handlePriceMax,
-  setSort,
-  handleSortAsc,
-  handleSortDesc,
-  setSwitchValue,
-  switchValue,
+  rangeValues,
+  handleRange,
 }) => {
   return (
     <div className="main">
@@ -33,7 +25,6 @@ const Header = ({
           </Link>
         </div>
         <div className="filters">
-          <div></div>
           <div className="search">
             <FontAwesomeIcon icon="search" className="searchicon" />
             <input
@@ -43,22 +34,42 @@ const Header = ({
               value={title}
             />
           </div>
-          <input
-            className="priceMinMax"
-            type="number"
-            onChange={handlePriceMin}
-          />
-          <input
-            className="priceMinMax"
-            type="number"
-            onChange={handlePriceMax}
+          <Range
+            step={1}
+            min={0}
+            max={1000}
+            values={rangeValues}
+            onChange={(values) => handleRange(values)}
+            renderTrack={({ props, children }) => (
+              <div
+                {...props}
+                style={{
+                  ...props.style,
+                  height: "6px",
+                  width: "100%",
+                  backgroundColor: "#ccc",
+                }}
+              >
+                {children}
+              </div>
+            )}
+            renderThumb={({ props }) => (
+              <div
+                {...props}
+                style={{
+                  ...props.style,
+                  height: "10px",
+                  width: "10px",
+                  backgroundColor: "#999",
+                }}
+              />
+            )}
           />
         </div>
-
         <div className="threebuttons">
           {token ? (
             <div>
-              <button className="logoutbutton" onClick={handleLogout}>
+              <button className="logoutButton" onClick={handleLogout}>
                 Se déconnecter
               </button>
             </div>
@@ -72,7 +83,11 @@ const Header = ({
               </Link>
             </div>
           )}
-          <button className="venteButton">Vends tes articles</button>
+        </div>
+        <div>
+          <Link to={token ? "/publish" : undefined}>
+            <button className="venteButton">Vends tes articles</button>
+          </Link>
         </div>
       </div>
     </div>

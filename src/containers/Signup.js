@@ -27,18 +27,22 @@ const Signup = ({ handleLogin }) => {
   const handleSubmit = async (event) => {
     try {
       event.preventDefault();
-      const response = await axios.post(
-        "https://lereacteur-vinted-api.herokuapp.com/user/signup",
-        {
-          email: email,
-          phone: phone,
-          username: username,
-          password: password,
-        }
-      );
+      let response;
+      if (email && phone && username && password) {
+        response = await axios.post(
+          "https://lereacteur-vinted-api.herokuapp.com/user/signup",
+          {
+            email: email,
+            phone: phone,
+            username: username,
+            password: password,
+          }
+        );
+      }
       if (response.data.token) {
-        handleLogin(response.data.token);
-        alert(`Bienvenu sur le site, ${username}`);
+        const token = response.data.token;
+        handleLogin(token);
+        console.log(`Bienvenu sur le site, ${username}`);
         setEmail("");
         setPassword("");
         setUsername("");
@@ -46,7 +50,6 @@ const Signup = ({ handleLogin }) => {
       }
     } catch (error) {
       console.log(error);
-      alert(error);
     }
   };
 

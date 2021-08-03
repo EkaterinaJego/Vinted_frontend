@@ -1,12 +1,18 @@
 import "./App.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  useHistory,
+  Redirect,
+} from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
 import Header from "./components/Header";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import Offer from "./containers/Offer";
 import Home from "./containers/Home";
+import Publish from "./containers/Publish";
 import Signup from "./containers/Signup";
 import Login from "./containers/Login";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -14,27 +20,37 @@ import { faSearch, faList } from "@fortawesome/free-solid-svg-icons";
 library.add(faSearch, faList);
 
 export default function App() {
-  // const { price-desc } = useParams();
-  // const { price-asc } = useParams()
+  let history = useHistory();
   const [token, setToken] = useState(Cookies.get("token") || "");
   const [title, setTitle] = useState("");
   const [offers, setOffers] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  const [priceMin, setPriceMin] = useState(0);
-  const [priceMax, setPriceMax] = useState(500);
-  const [sort, setSort] = useState("");
-  const [switchValue, setSwitchValue] = useState(false);
+  const [rangeValues, setRangeValues] = useState([0, 100]);
+  // const [rangeFinalValues, setFinalRangeValues] = useState(0, 100);
+  // const [sort, setSort] = useState(false);
+  // const [artTitle, setArtTitle] = useState("");
+  // const [artDescription, setArtDescription] = useState("");
+  // const [artPrice, setArtPrice] = useState("");
+  // const [artCondition, setArtCondition] = useState("");
+  // const [artCity, setArtCity] = useState("");
+  // const [artBrand, setArtBrand] = useState("");
+  // const [artSize, setArtSize] = useState("");
+  // const [artColor, setArtColor] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `https://lereacteur-vinted-api.herokuapp.com/offers?title=${title}&priceMin=${priceMin}&priceMax=${priceMax}&sort=${sort}`
+        `https://lereacteur-vinted-api.herokuapp.com/offers?title=${title}&priceMin=${rangeValues[0]}&priceMax=${rangeValues[1]}`
       );
       setOffers(response.data.offers);
       setIsLoading(false);
     };
     fetchData();
-  }, [title, priceMin, priceMax, sort]);
+  }, [title, rangeValues]);
+
+  const handleRange = (values) => {
+    setRangeValues(values);
+  };
 
   const handleLogin = (token) => {
     Cookies.set("token", token);
@@ -44,36 +60,12 @@ export default function App() {
   const handleLogout = () => {
     Cookies.remove("token");
     setToken("");
+
+    <Redirect to="/publish" />;
   };
 
   const handleTitle = (event) => {
     setTitle(event.target.value);
-  };
-
-  const handlePriceMax = (event) => {
-    setPriceMax(event.target.value);
-  };
-
-  const handlePriceMin = (event) => {
-    setPriceMin(event.target.value);
-  };
-
-  const handleToggle = () => {
-    if (switchValue === false) {
-      setSwitchValue(true);
-      handleSortAsc();
-    } else {
-      setSwitchValue(false);
-      handleSortDesc();
-    }
-  };
-
-  const handleSortAsc = () => {
-    setSort("price-asc");
-  };
-
-  const handleSortDesc = () => {
-    setSort("price-desc");
   };
 
   return (
@@ -85,18 +77,8 @@ export default function App() {
         setOffers={setOffers}
         title={title}
         handleTitle={handleTitle}
-        // priceMax={priceMax}
-        // priceMin={priceMin}
-        // setPriceMin={setPriceMin}
-        // setPriceMax={setPriceMax}
-        handlePriceMax={handlePriceMax}
-        handlePriceMin={handlePriceMin}
-        setSort={setSort}
-        swithValue={switchValue}
-        setSwitchValue={setSwitchValue}
-        handleToggle={handleToggle}
-        handleSortAsc={handleSortAsc}
-        handleSortDesc={handleSortDesc}
+        handleRange={handleRange}
+        rangeValues={rangeValues}
       />
       <Switch>
         <Route path="/offer/:id">
@@ -107,6 +89,9 @@ export default function App() {
         </Route>
         <Route path="/user/login">
           <Login handleLogin={handleLogin} />
+        </Route>
+        <Route path="/publish">
+          <Publish token={token} />
         </Route>
         <Route exact path="/">
           <Home

@@ -1,7 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
 
-const Login = ({ handleLogin }) => {
+const Login = ({ handleLogin, setLogens }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
@@ -16,15 +17,19 @@ const Login = ({ handleLogin }) => {
   const handleSubmit = async (event) => {
     try {
       event.preventDefault();
-      const response = await axios.post(
-        "https://lereacteur-vinted-api.herokuapp.com/user/login",
-        { email: email, password: password }
-      );
+      let response;
+      if (email && password) {
+        response = await axios.post(
+          "https://lereacteur-vinted-api.herokuapp.com/user/login",
+          { email: email, password: password }
+        );
+      }
       if (response.data.token) {
+        const token = Cookies.set("token", response.data.token);
         const username = response.data.account.username;
-
-        handleLogin(response.data.token);
-        alert(`Welcome back, ${username}!`);
+        handleLogin(token);
+        console.log(`Welcome back, ${username}!`);
+        console.log(Cookies.get("userToken"));
         setEmail("");
         setPassword("");
       }

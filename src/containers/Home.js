@@ -1,8 +1,7 @@
 import React from "react";
-
 import Mainpart from "../components/Mainpart";
 import Items from "../components/Items";
-import "./home.css";
+import "../components/home.css";
 
 const Home = ({
   offers,

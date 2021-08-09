@@ -1,0 +1,89 @@
+.paymentmain {
+  width: 100%;
+  height: 100%;
+  background-color: #eaedee;
+  color: grey;
+}
+
+.paymentform {
+  display: flex;
+  padding-top: 2%;
+  margin-top: 4%;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 25%;
+  margin-left: 25%;
+  background-color: white;
+}
+
+.resumeofcommand {
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-top: 5%;
+  margin-bottom: 3%;
+  font-size: 24px;
+}
+
+.paymentform span {
+  font-size: 24px;
+  line-height: 20px;
+  margin-bottom: 3%;
+}
+.lastpathtext {
+  font-size: 20px;
+}
+.paymentdetails {
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.command,
+.protectionfees,
+.transportfees,
+.totalfees {
+  display: flex;
+  width: 100%;
+  padding-right: 2%;
+  justify-content: space-between;
+}
+
+.command span {
+  font-size: 18px;
+}
+
+.protectionfees span {
+  font-size: 18px;
+}
+
+.transportfees span {
+  font-size: 18px;
+}
+
+.totalfees {
+  margin-top: 3%;
+  border-top: solid 0.5px gainsboro;
+}
+
+.totalfees span {
+  color: black;
+  margin-top: 3%;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.lastpathtext {
+  font-size: 20px;
+  color: black;
+  text-justify: distribute;
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-top: 5%;
+  margin-bottom: 4%;
+  padding-bottom: 4%;
+  border-bottom: solid 0.5px gainsboro;
+}
+
+.product_name,
+.totalprice {
+  font-weight: bold;
+}

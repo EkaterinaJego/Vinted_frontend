@@ -6,7 +6,7 @@ const Item = ({ offers, filteredOffers }) => {
     <div>
       {filteredOffers ? (
         <div>
-          {filteredOffers.map((filterOff, id) => {
+          {filteredOffers.map((filterOff, _id) => {
             return (
               <div className="item" key={filterOff._id}>
                 <div className="offer-userinfo">
@@ -22,7 +22,7 @@ const Item = ({ offers, filteredOffers }) => {
                       />
                     </div>
                   </Link>
-                  <div>{filterOff.product_price}$</div>
+                  <div>{filterOff.product_price} €</div>
                   <div>{filterOff.product_size}</div>
                   <div>{filterOff.product_name}</div>
                 </div>
@@ -32,7 +32,7 @@ const Item = ({ offers, filteredOffers }) => {
         </div>
       ) : (
         <div className="offers-container">
-          {offers.map((offer, id) => {
+          {offers.map((offer, _id) => {
             return (
               <div className="item" key={offer._id}>
                 <div className="offer-userinfo">
@@ -48,7 +48,7 @@ const Item = ({ offers, filteredOffers }) => {
                       />
                     </div>
                   </Link>
-                  <div>{offer.product_price}$</div>
+                  <div>{offer.product_price} €</div>
                   <div>{offer.product_size}</div>
                   <div>{offer.product_name}</div>
                 </div>

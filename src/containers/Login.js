@@ -1,8 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { useHistory, Link } from "react-router-dom";
+import "./login.css";
 
 const Login = ({ handleLogin }) => {
+  const history = useHistory();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
@@ -24,10 +27,12 @@ const Login = ({ handleLogin }) => {
           { email: email, password: password }
         );
         if (response.data.token) {
-          const token = Cookies.set("token", response.data.token);
+          const token = response.data.token;
+          Cookies.set("token", token);
           const username = response.data.account.username;
           handleLogin(token);
-          console.log(`Welcome back, ${username}!`);
+          history.push("/");
+          // console.log(`Login / Welcome back, ${username}!`);
           setEmail("");
           setPassword("");
         }
@@ -39,7 +44,9 @@ const Login = ({ handleLogin }) => {
 
   return (
     <>
-      <div className="formulaire">
+      <div className="loginform">
+        <span>Se connecter</span>
+
         <form onClick={handleSubmit}>
           <input
             type="email"
@@ -51,7 +58,16 @@ const Login = ({ handleLogin }) => {
             placeholder="Mot de passe"
             onChange={handlePassword}
           />
-          <button type="submit">Se connecter</button>
+          <button type="submit" className="loginsubmitbtn">
+            Se connecter
+          </button>
+          <Link to="/user/signup" style={{ textDecoration: "none" }}>
+            <div className="signuplinkmain">
+              <div className="signuplink">
+                Pas encore de compte ? Inscris-toi
+              </div>
+            </div>
+          </Link>
         </form>
       </div>
     </>

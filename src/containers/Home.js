@@ -1,16 +1,16 @@
 import React from "react";
 import Mainpart from "../components/Mainpart";
 import Items from "../components/Items";
-import "../components/home.css";
+import "./home.css";
 
-const Home = ({ offers, setOffers, isLoading }) => {
+const Home = ({ offers, setOffers, isLoading, token }) => {
   return (
     <>
       {isLoading ? (
         <div>The page is loading ...</div>
       ) : (
         <div>
-          <Mainpart />
+          <Mainpart token={token} />
           <Items offers={offers} setOffers={setOffers} />
         </div>
       )}

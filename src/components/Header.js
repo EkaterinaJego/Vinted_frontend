@@ -1,21 +1,30 @@
 import logo from "../images/logoVinted.png";
 import "./header.css";
 import { Range } from "react-range";
-import { Link } from "react-router-dom";
-import {
-  // faSearch,
-  // faLIst,
-  FontAwesomeIcon,
-} from "@fortawesome/react-fontawesome";
+import { Link, useHistory } from "react-router-dom";
+import Toggle from "react-toggle";
+import "./toggle.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Cookies from "js-cookie";
 
 const Header = ({
   token,
-  handleLogout,
+  setToken,
   title,
   handleTitle,
   rangeValues,
   handleRange,
+  sort,
+  handleSort,
 }) => {
+  const history = useHistory();
+
+  const handleLogout = () => {
+    Cookies.remove("token");
+    setToken("");
+    history.push("/user/signup");
+  };
+
   return (
     <div className="main">
       <div className="headerbody">
@@ -34,47 +43,80 @@ const Header = ({
               value={title}
             />
           </div>
-          <Range
-            step={1}
-            min={0}
-            max={1000}
-            values={rangeValues}
-            onChange={(values) => handleRange(values)}
-            renderTrack={({ props, children }) => (
-              <div
-                {...props}
-                style={{
-                  ...props.style,
-                  height: "6px",
-                  width: "100%",
-                  backgroundColor: "#ccc",
+          <div className="toggleandrange">
+            <span className="togglespan">Trier par prix :</span>
+            <div className="toggle">
+              <Toggle
+                defaultChecked={sort}
+                icons={{
+                  checked: (
+                    <div>
+                      <FontAwesomeIcon
+                        icon="arrow-up"
+                        className="arrowupicon"
+                      />
+                    </div>
+                  ),
+                  unchecked: (
+                    <div>
+                      <FontAwesomeIcon
+                        icon="arrow-down"
+                        className="arrowdownicon"
+                      />
+                    </div>
+                  ),
                 }}
-              >
-                {children}
-              </div>
-            )}
-            renderThumb={({ props }) => (
-              <div
-                {...props}
-                style={{
-                  ...props.style,
-                  height: "10px",
-                  width: "10px",
-                  backgroundColor: "#999",
-                }}
+                onChange={handleSort}
               />
-            )}
-          />
+            </div>
+            <div className="range">
+              <Range
+                step={1}
+                min={1}
+                max={100000}
+                values={rangeValues}
+                onChange={(values) => handleRange(values)}
+                renderTrack={({ props, children }) => (
+                  <div
+                    {...props}
+                    style={{
+                      ...props.style,
+                      height: "6px",
+                      width: "100%",
+                      backgroundColor: "#2da8b1",
+                    }}
+                  >
+                    {children}
+                  </div>
+                )}
+                renderThumb={({ props }) => (
+                  <div
+                    {...props}
+                    style={{
+                      ...props.style,
+                      height: "20px",
+                      width: "20px",
+                      borderRadius: "10px",
+                      border: "none",
+                      backgroundColor: "#2db9c1",
+                    }}
+                  />
+                )}
+              />
+            </div>
+          </div>
         </div>
+
         <div className="threebuttons">
           {token ? (
             <div>
+              {/* {handleLogout && history.push("/user/signup")} */}
               <button className="logoutButton" onClick={handleLogout}>
                 Se déconnecter
               </button>
             </div>
           ) : (
-            <div className="signuploginbuttons">
+            <div>
               <Link to="/user/signup">
                 <button className="inscriptionButton">S'inscrire</button>
               </Link>
@@ -84,9 +126,9 @@ const Header = ({
             </div>
           )}
         </div>
-        <div>
-          <Link to={token ? "/publish" : undefined}>
-            <button className="venteButton">Vends tes articles</button>
+        <div className="purchase">
+          <Link to={token ? "/publish" : "/user/login"}>
+            <button className="purchaseButton">Vends tes articles</button>
           </Link>
         </div>
       </div>

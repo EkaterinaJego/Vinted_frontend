@@ -1,10 +1,10 @@
 import Product from "../components/Product";
 
-const Offer = () => {
+const Offer = ({ token, info, setInfo }) => {
   return (
-    <div>
-      <Product />
-    </div>
+    <>
+      <Product token={token} info={info} setInfo={setInfo} />
+    </>
   );
 };
 

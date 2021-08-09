@@ -1,74 +1,92 @@
 import "./App.css";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
 import Header from "./components/Header";
+import Header2 from "./components/Header2";
+import * as qs from "qs";
 import { useState, useEffect } from "react";
-import Offer from "./containers/Offer";
+import Product from "./components/Product";
 import Home from "./containers/Home";
+import Payment from "./containers/Payment";
 import Publish from "./containers/Publish";
 import Signup from "./containers/Signup";
 import Login from "./containers/Login";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faSearch, faList } from "@fortawesome/free-solid-svg-icons";
-library.add(faSearch, faList);
+import {
+  faSearch,
+  faList,
+  faArrowDown,
+  faArrowUp,
+} from "@fortawesome/free-solid-svg-icons";
+library.add(faSearch, faList, faArrowDown, faArrowUp);
 
 export default function App() {
   const [token, setToken] = useState(Cookies.get("token") || "");
   const [title, setTitle] = useState("");
   const [offers, setOffers] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  const [rangeValues, setRangeValues] = useState([0, 100]);
+  const [rangeValues, setRangeValues] = useState([1, 2]);
+  const [sort, setSort] = useState(false);
+  const [info, setInfo] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
+      const queryParams = qs.stringify({
+        title: title,
+        priceMin: rangeValues[0],
+        priceMax: rangeValues[1],
+        sort: sort ? "price-asc" : "price-desc",
+      });
       const response = await axios.get(
-        `https://lereacteur-vinted-api.herokuapp.com/offers?title=${title}&priceMin=${rangeValues[0]}&priceMax=${rangeValues[1]}`
+        `https://lereacteur-vinted-api.herokuapp.com/offers?${queryParams}`
       );
       setOffers(response.data.offers);
+      // console.log("App / setInfo = ", setInfo);
       setIsLoading(false);
     };
     fetchData();
-  }, [title, rangeValues]);
+  }, [title, rangeValues, sort]);
 
   const handleRange = (values) => {
     setRangeValues(values);
   };
 
   const handleLogin = (token) => {
+    // console.log("HANDLELOGIN");
+    // console.log("token = ", token);
     Cookies.set("token", token);
     setToken(token);
-    <Redirect to="/" />;
   };
 
-  const handleLogout = () => {
-    Cookies.remove("token");
-    setToken("");
-    <Redirect to="/" />;
-  };
+  // Credentials
+  // -----------
+  // katjego+40@yandex.ru
+  // katjego
 
   const handleTitle = (event) => {
     setTitle(event.target.value);
+  };
+
+  const handleSort = (event) => {
+    setSort(event.target.checked);
   };
 
   return (
     <Router>
       <Header
         token={token}
-        handleLogout={handleLogout}
+        setToken={setToken}
         title={title}
         handleTitle={handleTitle}
         handleRange={handleRange}
         rangeValues={rangeValues}
+        sort={sort}
+        handleSort={handleSort}
       />
       <Switch>
         <Route path="/offer/:id">
-          <Offer />
+          <Product info={info} setInfo={setInfo} />
         </Route>
         <Route path="/user/signup">
           <Signup handleLogin={handleLogin} />
@@ -77,10 +95,24 @@ export default function App() {
           <Login handleLogin={handleLogin} />
         </Route>
         <Route path="/publish">
-          <Publish token={token} setToken={setToken} />
+          <Publish token={token} />
+        </Route>
+        <Route path="/payment">
+          <Payment
+            info={info}
+            token={token}
+            setToken={setToken}
+            title={title}
+            handleTitle={handleTitle}
+          />
         </Route>
         <Route exact path="/">
-          <Home offers={offers} setOffers={setOffers} isLoading={isLoading} />
+          <Home
+            offers={offers}
+            setOffers={setOffers}
+            isLoading={isLoading}
+            token={token}
+          />
         </Route>
       </Switch>
     </Router>

@@ -1,23 +1,27 @@
 .bankcardform {
-  margin-left: 3%;
-  padding: 2%;
-  margin-right: 3%;
-  margin-top: 5%;
-  margin-bottom: 4%;
+  width: 100%;
   display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: stretch;
+}
+.bankcardbtnparent {
+  display: flex;
+  margin-top: 40px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
 }
 
 .bankcardbtn {
-  height: 35px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 50px;
+  width: 50%;
   border-radius: 5px;
   font-size: 16px;
   font-weight: 300;
-  border: 1px solid;
   color: white;
-  font-family: inherit;
-  background-color: red;
+  font-family: "Maison Neue";
+  background-color: #2da8b1;
   cursor: pointer;
 }

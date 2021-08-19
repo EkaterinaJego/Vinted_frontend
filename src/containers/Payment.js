@@ -35,9 +35,7 @@ const Payment = ({ info }) => {
               </div>
               <div className="totalfees">
                 <span className="firstspan">Total :</span>
-                <span className="secondspan">
-                  {protectionfees + transportfees + info.product_price} €
-                </span>
+                <span className="secondspan">{totalprice} €</span>
               </div>
             </div>
             <span className="lastpathtext">
@@ -46,14 +44,14 @@ const Payment = ({ info }) => {
               allez payer <span className="totalprice">{totalprice} €</span>
               (frais de protection et de transport inclus).
             </span>
-            <section className="checkoutform">
+            <div className="checkoutform">
               <Elements stripe={stripePromise}>
                 <CheckoutForm
                   product_name={info.product_name}
                   totalprice={totalprice}
                 />
               </Elements>
-            </section>
+            </div>
           </div>
         </div>
       </div>

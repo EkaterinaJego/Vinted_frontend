@@ -24,6 +24,13 @@
   font-size: 24px;
 }
 
+.checkoutform {
+  background-color: #fff;
+  width: 550px;
+  padding: 25px;
+  margin: 0 auto;
+}
+
 .paymentform span {
   font-size: 24px;
   line-height: 20px;

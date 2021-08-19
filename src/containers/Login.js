@@ -29,10 +29,8 @@ const Login = ({ handleLogin }) => {
         if (response.data.token) {
           const token = response.data.token;
           Cookies.set("token", token);
-          const username = response.data.account.username;
           handleLogin(token);
           history.push("/");
-          // console.log(`Login / Welcome back, ${username}!`);
           setEmail("");
           setPassword("");
         }

@@ -11,6 +11,7 @@
   object-fit: cover;
   position: absolute;
   z-index: 1;
+  object-position: left top;
 }
 
 .incitation {

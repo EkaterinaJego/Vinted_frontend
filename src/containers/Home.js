@@ -1,7 +1,7 @@
 import React from "react";
 import Mainpart from "../components/Mainpart";
 import Items from "../components/Items";
-import "./home.css";
+import "../containers/home.css";
 
 const Home = ({ offers, setOffers, isLoading, token }) => {
   return (

@@ -3,10 +3,9 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
 import Header from "./components/Header";
-import Header2 from "./components/Header2";
 import * as qs from "qs";
 import { useState, useEffect } from "react";
-import Product from "./components/Product";
+import Product from "./containers/Product";
 import Home from "./containers/Home";
 import Payment from "./containers/Payment";
 import Publish from "./containers/Publish";
@@ -26,7 +25,7 @@ export default function App() {
   const [title, setTitle] = useState("");
   const [offers, setOffers] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  const [rangeValues, setRangeValues] = useState([1, 2]);
+  const [rangeValues, setRangeValues] = useState([0, 10000]);
   const [sort, setSort] = useState(false);
   const [info, setInfo] = useState({});
 
@@ -59,11 +58,6 @@ export default function App() {
     setToken(token);
   };
 
-  // Credentials
-  // -----------
-  // katjego+40@yandex.ru
-  // katjego
-
   const handleTitle = (event) => {
     setTitle(event.target.value);
   };
@@ -79,8 +73,8 @@ export default function App() {
         setToken={setToken}
         title={title}
         handleTitle={handleTitle}
-        handleRange={handleRange}
         rangeValues={rangeValues}
+        handleRange={handleRange}
         sort={sort}
         handleSort={handleSort}
       />
@@ -98,13 +92,7 @@ export default function App() {
           <Publish token={token} />
         </Route>
         <Route path="/payment">
-          <Payment
-            info={info}
-            token={token}
-            setToken={setToken}
-            title={title}
-            handleTitle={handleTitle}
-          />
+          <Payment info={info} />
         </Route>
         <Route exact path="/">
           <Home

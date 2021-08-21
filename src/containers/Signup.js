@@ -10,6 +10,7 @@ const Signup = ({ handleLogin, myUrl }) => {
   const [phone, setPhone] = useState();
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
+  console.log(myUrl);
 
   const history = useHistory();
 
@@ -34,12 +35,16 @@ const Signup = ({ handleLogin, myUrl }) => {
       event.preventDefault();
       let response;
       if (email && phone && username && password) {
-        response = await axios.post("http://localhost:3000/user/signup", {
-          email: email,
-          phone: phone,
-          username: username,
-          password: password,
-        });
+        response = await axios.post(
+          "https://my-vinted-backend-project.herokuapp.com/user/signup",
+
+          {
+            email: email,
+            phone: phone,
+            username: username,
+            password: password,
+          }
+        );
       }
       if (response.data.token) {
         const token = response.data.token;

@@ -22,11 +22,16 @@ const Login = ({ handleLogin, myUrl }) => {
       event.preventDefault();
       let response;
       if (email && password) {
-        response = await axios.post(`${myUrl}/user/login`, {
-          email: email,
-          password: password,
-        });
+        // response = await axios.post(`${myUrl}/user/login`,
+        response = await axios.post(
+          "https://my-vinted-backend-project.herokuapp.com/user/login",
+          {
+            email: email,
+            password: password,
+          }
+        );
         if (response.data.token) {
+          console.log(response.data);
           const token = response.data.token;
           Cookies.set("token", token);
           handleLogin(token);
@@ -36,7 +41,8 @@ const Login = ({ handleLogin, myUrl }) => {
         }
       }
     } catch (error) {
-      console.log("erreur : ", error.response);
+      if (error.response.status === 401 || error.response.status === 400)
+        console.log("Mauvais email et/ou mot de passe");
     }
   };
 

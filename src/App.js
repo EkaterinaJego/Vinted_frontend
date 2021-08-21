@@ -20,7 +20,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 library.add(faSearch, faList, faArrowDown, faArrowUp);
 
-export default function App() {
+// export default function App()
+
+const App = () => {
+  const myUrl = "https://my-vinted-backend-project.herokuapp.com";
+
   const [token, setToken] = useState(Cookies.get("token") || "");
   const [title, setTitle] = useState("");
   const [offers, setOffers] = useState();
@@ -37,9 +41,7 @@ export default function App() {
         priceMax: rangeValues[1],
         sort: sort ? "price-asc" : "price-desc",
       });
-      const response = await axios.get(
-        `https://lereacteur-vinted-api.herokuapp.com/offers?${queryParams}`
-      );
+      const response = await axios.get(`${myUrl}/offers?${queryParams}`);
       setOffers(response.data.offers);
       // console.log("App / setInfo = ", setInfo);
       setIsLoading(false);
@@ -77,22 +79,23 @@ export default function App() {
         handleRange={handleRange}
         sort={sort}
         handleSort={handleSort}
+        myUrl={myUrl}
       />
       <Switch>
         <Route path="/offer/:id">
-          <Product info={info} setInfo={setInfo} />
+          <Product info={info} setInfo={setInfo} myUrl={myUrl} />
         </Route>
         <Route path="/user/signup">
-          <Signup handleLogin={handleLogin} />
+          <Signup handleLogin={handleLogin} myUrl={myUrl} />
         </Route>
         <Route path="/user/login">
-          <Login handleLogin={handleLogin} />
+          <Login handleLogin={handleLogin} myUrl={myUrl} />
         </Route>
         <Route path="/publish">
-          <Publish token={token} />
+          <Publish token={token} myUrl={myUrl} />
         </Route>
         <Route path="/payment">
-          <Payment info={info} />
+          <Payment info={info} myUrl={myUrl} />
         </Route>
         <Route exact path="/">
           <Home
@@ -100,9 +103,13 @@ export default function App() {
             setOffers={setOffers}
             isLoading={isLoading}
             token={token}
+            value
+            myUrl={myUrl}
           />
         </Route>
       </Switch>
     </Router>
   );
-}
+};
+
+export default App;

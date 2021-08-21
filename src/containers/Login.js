@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 import { useHistory, Link } from "react-router-dom";
 import "./login.css";
 
-const Login = ({ handleLogin }) => {
+const Login = ({ handleLogin, myUrl }) => {
   const history = useHistory();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -22,10 +22,10 @@ const Login = ({ handleLogin }) => {
       event.preventDefault();
       let response;
       if (email && password) {
-        response = await axios.post(
-          "https://lereacteur-vinted-api.herokuapp.com/user/login",
-          { email: email, password: password }
-        );
+        response = await axios.post(`${myUrl}/user/login`, {
+          email: email,
+          password: password,
+        });
         if (response.data.token) {
           const token = response.data.token;
           Cookies.set("token", token);

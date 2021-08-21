@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useHistory, useParams } from "react-router-dom";
 
-const Product = ({ info, setInfo }) => {
+const Product = ({ info, setInfo, myUrl }) => {
   const { id } = useParams();
   // console.log("Product / id = ", id);
   // const [info, setInfo] = useState({});
@@ -12,9 +12,7 @@ const Product = ({ info, setInfo }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios.get(
-        `https://lereacteur-vinted-api.herokuapp.com/offer/${id}`
-      );
+      const result = await axios.get(`${myUrl}/offer/${id}`);
       setInfo(result.data);
       // console.log("Product / info = ", info);
       setIsLoading(false);

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import VintedPhoto from "../images/vintedmainimg.jpg";
+import VintedPhoto from "../images/vintedimage.jpg";
+
 import "./mainpart.css";
 
 const Mainpart = ({ token }) => {

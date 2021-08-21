@@ -3,7 +3,7 @@ import Mainpart from "../components/Mainpart";
 import Items from "../components/Items";
 import "../containers/home.css";
 
-const Home = ({ offers, setOffers, isLoading, token }) => {
+const Home = ({ offers, setOffers, isLoading, token, myUrl }) => {
   return (
     <>
       {isLoading ? (
@@ -11,7 +11,7 @@ const Home = ({ offers, setOffers, isLoading, token }) => {
       ) : (
         <div>
           <Mainpart token={token} />
-          <Items offers={offers} setOffers={setOffers} />
+          <Items offers={offers} setOffers={setOffers} myUrl={myUrl} />
         </div>
       )}
     </>

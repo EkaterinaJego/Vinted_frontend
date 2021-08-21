@@ -1,10 +1,10 @@
 import React from "react";
-import "../components/publish.css";
+import "./publish.css";
 import { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
-const Publish = ({ token }) => {
+const Publish = ({ token, myUrl }) => {
   const history = useHistory();
 
   const [artTitle, setArtTitle] = useState("");
@@ -68,16 +68,12 @@ const Publish = ({ token }) => {
       // console.log("artTitle) = ", artTitle);
       // console.log("formData = ", formData);
       console.log("token = ", token);
-      const response = await axios.post(
-        "https://lereacteur-vinted-api.herokuapp.com/offer/publish",
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const response = await axios.post(`${myUrl}/offer/publish`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      });
       console.log("response = ", response);
       if (response.status === 200) {
         history.push(`/offer/${response.data._id}`);

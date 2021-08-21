@@ -16,6 +16,7 @@ const Header = ({
   handleRange,
   sort,
   handleSort,
+  myUrl,
 }) => {
   const history = useHistory();
 
@@ -83,15 +84,17 @@ const Header = ({
                 Se déconnecter
               </button>
             </div>
-          ) : null}
-          <div>
-            <Link to="/user/signup">
-              <button className="inscriptionButton">S'inscrire</button>
-            </Link>
-            <Link to="/user/login">
-              <button className="connexionButton">Se connecter</button>
-            </Link>
-          </div>
+          ) : (
+            // null
+            <div>
+              <Link to="/user/signup">
+                <button className="inscriptionButton">S'inscrire</button>
+              </Link>
+              <Link to="/user/login">
+                <button className="connexionButton">Se connecter</button>
+              </Link>
+            </div>
+          )}
         </div>
         <div className="purchase">
           <Link to={token ? "/publish" : "/user/login"}>

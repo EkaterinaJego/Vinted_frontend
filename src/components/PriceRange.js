@@ -3,7 +3,7 @@ import { Range, getTrackBackground } from "react-range";
 import "./priceRange.css";
 
 const MIN = 0;
-const MAX = 10000;
+const MAX = 100000;
 
 const PriceRange = ({ rangeValues, handleRange }) => {
   return (

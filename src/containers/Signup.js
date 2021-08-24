@@ -6,11 +6,10 @@ import { useHistory } from "react-router-dom";
 import "./signup.css";
 
 const Signup = ({ handleLogin, myUrl }) => {
-  const [email, setEmail] = useState();
-  const [phone, setPhone] = useState();
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
-  console.log(myUrl);
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const history = useHistory();
 
@@ -36,8 +35,8 @@ const Signup = ({ handleLogin, myUrl }) => {
       let response;
       if (email && phone && username && password) {
         response = await axios.post(
+          // "https://lereacteur-vinted-api.herokuapp.com/user/signup",
           "https://my-vinted-backend-project.herokuapp.com/user/signup",
-
           {
             email: email,
             phone: phone,

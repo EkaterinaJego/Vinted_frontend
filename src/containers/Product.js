@@ -50,7 +50,11 @@ const Product = ({ info, setInfo, myUrl }) => {
             <div className="purchasebtn">
               <button
                 onClick={() => {
-                  history.push("/payment");
+                  history.push("/payment", {
+                    product_name: info.product_name,
+                    product_price: info.product_price,
+                    myUrl: { myUrl },
+                  });
                 }}
               >
                 Acheter l'article

@@ -6,8 +6,8 @@ import "./login.css";
 
 const Login = ({ handleLogin, myUrl }) => {
   const history = useHistory();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleEmail = (event) => {
     setEmail(event.target.value);

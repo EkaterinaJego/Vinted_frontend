@@ -1,68 +1,51 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import "./checkoutform.css";
 import axios from "axios";
 
-const CheckoutForm = ({ product_name, totalprice }) => {
+const CheckoutForm = ({ product_name, totalprice, myUrl }) => {
+  const [isPaid, setIsPaid] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
 
-  const [completed, setCompleted] = useState(false);
-
-  const handleCheckoutFormSubmit = async (event) => {
+  const handleSubmit = async (event) => {
     try {
       event.preventDefault();
-      // Récupération des données bancaires de l'utilisateur :
       const cardElement = elements.getElement(CardElement);
-      // Demande de création d'un token via l'API Stripe
-      // On envoie les données bancaires dans la requête
-      const stripeResponse = await stripe.createToken(cardElement, {
-        name: "L'id de l'acheteur",
-      });
-      console.log("CheckoutForm / stripeResponse= ", stripeResponse);
+
+      const stripeResponse = await stripe.createToken(cardElement);
+      console.log("StripeResponse = ", stripeResponse);
 
       const stripeToken = stripeResponse.token.id;
 
+      // const response = await axios.post(`${myUrl}/payment`, {
       const response = await axios.post(
         "https://lereacteur-vinted-api.herokuapp.com/payment",
         {
-          token: stripeToken,
           amount: totalprice,
           title: product_name,
+          token: stripeToken,
         }
       );
       console.log(response.data);
+
       if (response.data.status === "succeeded") {
-        setCompleted(true);
+        setIsPaid(true);
       } else {
-        alert("Merci de reessayer, une erreur est survenue");
+        alert("Une erreur est survenue, veuillez réssayer.");
       }
     } catch (error) {
       console.log(error.message);
     }
   };
 
-  return (
-    <>
-      {!completed ? (
-        <div className="bankcardform">
-          <form onSubmit={handleCheckoutFormSubmit}>
-            <CardElement />
-            <div className="bankcardbtnparent">
-              <button
-                type="submit"
-                className="bankcardbtn"
-                disabled={!stripe || !elements}
-              >
-                Valider
-              </button>
-            </div>
-          </form>
-        </div>
-      ) : (
-        <span>Paiement a été effectué !</span>
-      )}
-    </>
+  return isPaid ? (
+    <p>Merci pour votre achat.</p>
+  ) : (
+    <form onSubmit={handleSubmit}>
+      <CardElement />
+      <button type="submit">Pay</button>
+    </form>
   );
 };
 

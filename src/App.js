@@ -20,16 +20,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 library.add(faSearch, faList, faArrowDown, faArrowUp);
 
-// export default function App()
-
 const App = () => {
   const myUrl = "https://my-vinted-backend-project.herokuapp.com";
 
   const [token, setToken] = useState(Cookies.get("token") || "");
   const [title, setTitle] = useState("");
-  const [offers, setOffers] = useState();
+  const [offers, setOffers] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  const [rangeValues, setRangeValues] = useState([0, 10000]);
+  const [rangeValues, setRangeValues] = useState([0, 100000]);
   const [sort, setSort] = useState(false);
   const [info, setInfo] = useState({});
 
@@ -83,7 +81,7 @@ const App = () => {
       />
       <Switch>
         <Route path="/offer/:id">
-          <Product info={info} setInfo={setInfo} myUrl={myUrl} />
+          <Product info={info} setInfo={setInfo} myUrl={myUrl} token={token} />
         </Route>
         <Route path="/user/signup">
           <Signup handleLogin={handleLogin} myUrl={myUrl} />
@@ -95,7 +93,7 @@ const App = () => {
           <Publish token={token} myUrl={myUrl} />
         </Route>
         <Route path="/payment">
-          <Payment info={info} myUrl={myUrl} />
+          <Payment info={info} myUrl={myUrl} token={token} />
         </Route>
         <Route exact path="/">
           <Home

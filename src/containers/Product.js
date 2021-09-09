@@ -3,9 +3,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useHistory, useParams } from "react-router-dom";
 
-const Product = ({ info, setInfo, myUrl, token }) => {
+const Product = ({ info, setInfo, myUrl }) => {
   const { id } = useParams();
-
   const [isLoading, setIsLoading] = useState(true);
   const history = useHistory();
 
@@ -13,7 +12,6 @@ const Product = ({ info, setInfo, myUrl, token }) => {
     const fetchData = async () => {
       const result = await axios.get(`${myUrl}/offer/${id}`);
       setInfo(result.data);
-      // console.log("Product / info = ", info);
       setIsLoading(false);
     };
     fetchData();
@@ -52,7 +50,7 @@ const Product = ({ info, setInfo, myUrl, token }) => {
                   history.push("/payment", {
                     product_name: info.product_name,
                     product_price: info.product_price,
-                    myUrl: { myUrl },
+                    myUrl: myUrl,
                   });
                 }}
               >

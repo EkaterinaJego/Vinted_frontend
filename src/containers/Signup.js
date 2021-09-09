@@ -34,16 +34,12 @@ const Signup = ({ handleLogin, myUrl }) => {
       event.preventDefault();
       let response;
       if (email && phone && username && password) {
-        response = await axios.post(
-          // "https://lereacteur-vinted-api.herokuapp.com/user/signup",
-          "https://my-vinted-backend-project.herokuapp.com/user/signup",
-          {
-            email: email,
-            phone: phone,
-            username: username,
-            password: password,
-          }
-        );
+        response = await axios.post(`${myUrl}/user/signup`, {
+          email: email,
+          phone: phone,
+          username: username,
+          password: password,
+        });
       }
       if (response.data.token) {
         const token = response.data.token;

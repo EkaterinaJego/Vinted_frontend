@@ -74,7 +74,6 @@ const Publish = ({ token, myUrl }) => {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log("response = ", response);
       if (response.status === 200) {
         history.push(`/offer/${response.data._id}`);
       }
@@ -96,8 +95,6 @@ const Publish = ({ token, myUrl }) => {
                 onChange={handleArtImg}
               />
             </div>
-
-            {/* {file && <img src={file} alt="img" />} */}
           </div>
           <div className="description">
             <div className="spantextarea">

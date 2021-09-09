@@ -8,23 +8,14 @@ const stripePromise = loadStripe(
   "pk_test_51JMC11FicsVW9Es4A8vHEOJWU46dweKUGHSpM88VPzHMUHrTNi1F8smonM31TSYCdAzSmrZzuUvvAUOqkSqND9ND00t9VeWRjn"
 );
 
-const Payment = ({ token }) => {
-  console.log("TOKEN==>", token);
+const Payment = ({ token, myUrl }) => {
   const location = useLocation();
-  console.log("LOCATION==>", location);
 
-  const { product_name, product_price, myUrl } = location.state;
-  console.log(
-    "PRODUCT_PRICE, PRODUCT_NAME, myURL==========>",
-    product_price,
-    product_name,
-    myUrl
-  );
+  const { product_name, product_price } = location.state;
 
   const protectionfees = 0.4;
   const transportfees = 0.8;
   const totalprice = protectionfees + transportfees + product_price;
-  console.log("TOTALPRICE===>", totalprice);
 
   return (
     <>
@@ -60,9 +51,8 @@ const Payment = ({ token }) => {
               <Elements stripe={stripePromise}>
                 <CheckoutForm
                   product_name={product_name}
-                  totalPrice={totalprice}
+                  totalprice={totalprice}
                   myUrl={myUrl}
-                  token={token}
                 />
               </Elements>
             </div>

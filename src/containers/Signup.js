@@ -11,7 +11,7 @@ const Signup = ({ handleLogin, myUrl }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const history = useHistory();
+  const history = useHistory("");
 
   const handleEmail = (event) => {
     setEmail(event.target.value);

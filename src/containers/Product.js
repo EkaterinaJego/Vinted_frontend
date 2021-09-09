@@ -3,10 +3,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useHistory, useParams } from "react-router-dom";
 
-const Product = ({ info, setInfo, myUrl }) => {
+const Product = ({ info, setInfo, myUrl, token }) => {
   const { id } = useParams();
-  // console.log("Product / id = ", id);
-  // const [info, setInfo] = useState({});
+
   const [isLoading, setIsLoading] = useState(true);
   const history = useHistory();
 

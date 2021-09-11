@@ -8,7 +8,7 @@ const stripePromise = loadStripe(
   "pk_test_51JMC11FicsVW9Es4A8vHEOJWU46dweKUGHSpM88VPzHMUHrTNi1F8smonM31TSYCdAzSmrZzuUvvAUOqkSqND9ND00t9VeWRjn"
 );
 
-const Payment = ({ token, myUrl }) => {
+const Payment = ({ myUrl }) => {
   const location = useLocation();
 
   const { product_name, product_price } = location.state;
@@ -42,10 +42,11 @@ const Payment = ({ token, myUrl }) => {
               </div>
             </div>
             <span className="lastpathtext">
-              Il ne vous reste plus qu'un étape pour vous offrir
-              <span className="product_name"> {product_name}</span>. Vous allez
-              payer <span className="totalprice">{totalprice} €</span>
-              (frais de protection et de transport inclus).
+              Il ne vous reste plus qu'un étape pour vous offrir un article
+              suivant : <span className="product_name">{product_name}</span>
+              .Vous allez payer
+              <span> {totalprice} </span>€ (frais de protection et de transport
+              inclus).
             </span>
             <div className="checkoutform">
               <Elements stripe={stripePromise}>

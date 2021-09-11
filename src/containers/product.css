@@ -78,8 +78,8 @@
   margin-right: 60px;
 }
 
-.description {
-  margin-top: 2%;
+.productdescription {
+  margin-top: 6%;
   margin-bottom: 1%;
   font-size: 18px;
   color: #c9c9c9;
@@ -156,11 +156,12 @@
     padding-top: 10px;
   }
 
-  .description {
+  .productdescription {
     margin-top: 2%;
     margin-bottom: 1%;
     font-size: 18px;
     color: #c9c9c9;
+    height: 20px;
   }
   .purchasebtn {
     margin-left: 10%;
@@ -185,7 +186,8 @@
 
   @media (max-width: 550px) {
     .product-page {
-      max-height: 680px;
+      max-height: 500px;
+      background-color: white;
     }
     .product-img {
       flex-direction: row;
@@ -200,8 +202,7 @@
     }
 
     .product-info {
-      background-color: white;
-      height: 200px;
+      max-height: 200px;
       max-width: 350px;
       padding: 0px;
       margin-bottom: 30px;
@@ -222,10 +223,6 @@
     .purchasebtn button {
       width: 50%;
       font-size: 1.2rem;
-    }
-
-    .description {
-      height: 50px;
     }
   }
 }

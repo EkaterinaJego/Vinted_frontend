@@ -42,7 +42,9 @@ const Product = ({ info, setInfo, myUrl }) => {
             })}
             <div className="product-name-description">
               <div className="name">{info.product_name.toUpperCase()}</div>
-              <div className="description">{info.product_description}</div>
+              <div className="productdescription">
+                {info.product_description}
+              </div>
             </div>
             <div className="purchasebtn">
               <button

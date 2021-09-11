@@ -1,8 +1,12 @@
 .paymentmain {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 2%;
+  padding-right: 2%;
+  background-color: white;
   width: 100%;
-  height: 100%;
-  background-color: #eaedee;
-  color: grey;
+  box-sizing: border-box;
 }
 
 .paymentform {
@@ -21,7 +25,10 @@
   margin-right: 3%;
   margin-top: 5%;
   margin-bottom: 3%;
+  width: 50%;
   font-size: 24px;
+  color: grey;
+  opacity: 0.9;
 }
 
 .checkoutform {
@@ -33,6 +40,7 @@
 
 .paymentform span {
   font-size: 24px;
+  color: black;
   line-height: 20px;
   margin-bottom: 3%;
 }
@@ -55,15 +63,15 @@
 }
 
 .command span {
-  font-size: 18px;
+  font-size: 22px;
 }
 
 .protectionfees span {
-  font-size: 18px;
+  font-size: 22px;
 }
 
 .transportfees span {
-  font-size: 18px;
+  font-size: 22px;
 }
 
 .totalfees {
@@ -81,7 +89,7 @@
 .lastpathtext {
   font-size: 20px;
   color: black;
-  text-justify: distribute;
+  text-align: justify;
   margin-left: 3%;
   margin-right: 3%;
   margin-top: 5%;
@@ -93,4 +101,73 @@
 .product_name,
 .totalprice {
   font-weight: bold;
+}
+
+@media (max-width: 1100px) {
+  .paymentmain {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .paymentform {
+    padding-top: 0;
+    margin-top: 1%;
+    margin-right: 10%;
+    margin-left: 10%;
+  }
+
+  .resumeofcommand {
+    width: 100%;
+    font-size: 18px;
+    opacity: 1;
+  }
+
+  .checkoutform {
+    width: 100%;
+    padding-top: 20;
+    padding-right: 0;
+    padding-left: 0;
+    padding-bottom: 0;
+  }
+
+  .paymentform span {
+    font-size: 18px;
+    color: black;
+    line-height: 20px;
+    margin-bottom: 3%;
+  }
+  .lastpathtext {
+    font-size: 18px;
+  }
+
+  .command,
+  .protectionfees,
+  .transportfees,
+  .totalfees {
+    width: 100%;
+    padding-right: 1%;
+  }
+
+  .command span,
+  .protectionfees span,
+  .transportfees span {
+    font-size: 18px;
+  }
+
+  .totalfees span {
+    font-size: 18px;
+  }
+
+  .lastpathtext {
+    font-size: 18px;
+    text-align: justify;
+  }
+}
+
+@media (max-width: 550px) {
+  .paymentform > div {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
 }

@@ -77,7 +77,6 @@ const App = () => {
         handleRange={handleRange}
         sort={sort}
         handleSort={handleSort}
-        myUrl={myUrl}
       />
       <Switch>
         <Route path="/offer/:id">
@@ -93,7 +92,7 @@ const App = () => {
           <Publish token={token} myUrl={myUrl} />
         </Route>
         <Route path="/payment">
-          <Payment info={info} myUrl={myUrl} token={token} />
+          <Payment info={info} myUrl={myUrl} />
         </Route>
         <Route exact path="/">
           <Home

@@ -16,7 +16,6 @@ const Header = ({
   handleRange,
   sort,
   handleSort,
-  myUrl,
 }) => {
   const history = useHistory();
 

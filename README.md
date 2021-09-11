@@ -42,16 +42,18 @@ Project built with React JS and deployed on
 ![home page](https://github.com/EkaterinaJego/Vinted_frontend/blob/main/src/images/homepage.png)
 
 **Sign Up page**
+![sign up page](https://github.com/EkaterinaJego/Vinted_frontend/blob/main/src/images/signuppage.png)
 
 **Product page**
+![product page](https://github.com/EkaterinaJego/Vinted_frontend/blob/main/src/images/productpage.png)
 
 ## Features
 
 **This project includes the following pages :**
 
 - Home page
-- Sign Up page
 - Log In page
-- Article page
+- Product page
 - Publish page
 - Purchase page
+- Sign Up page

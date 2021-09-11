@@ -29,7 +29,6 @@ const Item = ({ offers }) => {
           );
         })}
       </div>
-      )
     </div>
   );
 };

@@ -14,7 +14,9 @@ const CheckoutForm = ({ product_name, totalprice, myUrl }) => {
       const cardElement = elements.getElement(CardElement);
       const stripeResponse = await stripe.createToken(cardElement);
       const stripeToken = stripeResponse.token.id;
+      console.log("STRIPETOKEN===>", stripeToken);
       const response = await axios.post(`${myUrl}/payment`, {
+        // const response = await axios.post("http://localhost:3001/payment", {
         amount: Number(totalprice),
         title: product_name,
         token: stripeToken,

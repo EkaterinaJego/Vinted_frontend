@@ -43,9 +43,9 @@ const Login = ({ handleLogin, myUrl }) => {
   };
 
   return (
-    <>
+    <div>
       <div className="loginform">
-        <span>Se connecter</span>
+        <div>Se connecter</div>
 
         <form onClick={handleSubmit}>
           <input
@@ -70,7 +70,7 @@ const Login = ({ handleLogin, myUrl }) => {
           </Link>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 

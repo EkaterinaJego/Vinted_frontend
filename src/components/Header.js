@@ -77,29 +77,31 @@ const Header = ({
             </div>
           ) : null}
         </div>
-        <div className="threebuttons">
-          {token ? (
-            <div>
-              <button className="logoutButton" onClick={handleLogout}>
-                Se déconnecter
-              </button>
-            </div>
-          ) : (
-            // null
-            <div>
-              <Link to="/user/signup">
-                <button className="inscriptionButton">S'inscrire</button>
-              </Link>
-              <Link to="/user/login">
-                <button className="connexionButton">Se connecter</button>
-              </Link>
-            </div>
-          )}
-        </div>
-        <div className="purchase">
-          <Link to={token ? "/publish" : "/user/login"}>
-            <button className="purchaseButton">Vends tes articles</button>
-          </Link>
+        <div className="allbuttons">
+          <div className="threebuttons">
+            {token ? (
+              <div>
+                <button className="logoutButton" onClick={handleLogout}>
+                  Se déconnecter
+                </button>
+              </div>
+            ) : (
+              // null
+              <div>
+                <Link to="/user/signup">
+                  <button className="inscriptionButton">S'inscrire</button>
+                </Link>
+                <Link to="/user/login">
+                  <button className="connexionButton">Se connecter</button>
+                </Link>
+              </div>
+            )}
+          </div>
+          <div className="purchase">
+            <Link to={token ? "/publish" : "/user/login"}>
+              <button className="purchaseButton">Vends tes articles</button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

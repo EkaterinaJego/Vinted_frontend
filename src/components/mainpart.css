@@ -1,12 +1,14 @@
 .mainpartbody {
-  margin-top: 45px;
-  height: 455px;
   width: 100%;
-  margin-right: 0px;
+  height: 450px;
+  margin: 0;
+  margin-bottom: 50px;
+  padding: 10px 0px;
+  box-sizing: border-box;
 }
 
 .mainpartimg {
-  width: 100%;
+  width: 100vw;
   height: 455px;
   object-fit: cover;
   position: absolute;
@@ -59,5 +61,23 @@
 @media (max-width: 720px) {
   .incitation {
     display: none;
+  }
+
+  .mainpartbody {
+    width: 100%;
+  }
+}
+
+@media (max-width: 500px) {
+  .mainpartbody {
+    width: 100%;
+    margin-left: 0px;
+    height: 110px;
+    margin-right: 0px;
+    box-sizing: border-box;
+  }
+
+  .mainpartimg {
+    height: 100px;
   }
 }

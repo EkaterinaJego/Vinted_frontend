@@ -1,5 +1,6 @@
-/* Other rules */
-.container {
-  width: 100%;
-  font-family: "Lato", sans-serif;
+html,
+body,
+#root,
+.App {
+  height: 100%;
 }

@@ -4,7 +4,7 @@
 
 This is the replica of Vinted, online marketplace of secondhand items.
 
-- Project built with React JS and deployed on Netlify
+Project built with React JS and deployed on Netlify
 
 ## How to run the project
 
@@ -22,15 +22,15 @@ This is the replica of Vinted, online marketplace of secondhand items.
 
 ## Dependencies
 
--Axios
--Cors
--JS Cookie
--Fortawesome
--Stripe
--React
--React Range
--React Router Dom
--React Toggle
+- Axios
+- Cors
+- JS Cookie
+- Fortawesome
+- Stripe
+- React
+- React Range
+- React Router Dom
+- React Toggle
 
 ## Screenshots
 

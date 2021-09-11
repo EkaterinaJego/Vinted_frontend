@@ -5,7 +5,7 @@
 This is the replica of Vinted, online marketplace of secondhand items.
 
 Project built with React JS and deployed on
-[_Netlify_] (https://musing-swartz-5b75d9.netlify.app/)
+[_Netlify_](https://musing-swartz-5b75d9.netlify.app/)
 
 ## How to run the project
 
@@ -39,7 +39,7 @@ Project built with React JS and deployed on
 
 <!-- ![Example screenshot](./img/screenshot.png) -->
 
-![home page screenshot](./images/homepage.png) )
+![home page screenshot](././images/homepage.png) )
 
 **Sign Up page**
 
@@ -50,8 +50,8 @@ Project built with React JS and deployed on
 **This project includes the following pages :**
 
 - Home page
-- SignUp page
-- LogIn page
+- Sign Up page
+- Log In page
 - Article page
 - Publish page
 - Purchase page

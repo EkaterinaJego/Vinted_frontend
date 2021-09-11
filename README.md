@@ -39,7 +39,7 @@ Project built with React JS and deployed on
 
 <!-- ![Example screenshot](./img/screenshot.png) -->
 
-![home page screenshot](.././images/homepage.png) )
+![home page screenshot](https://github.com/EkaterinaJego/Vinted_frontend/blob/main/src/images/homepage.png)
 
 **Sign Up page**
 

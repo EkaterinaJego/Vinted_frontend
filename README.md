@@ -20,7 +20,7 @@ Project built with React JS and deployed on Netlify
 
 `yarn start`
 
-## Dependencies
+## Main dependencies
 
 - Axios
 - Cors

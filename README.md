@@ -1,4 +1,4 @@
-# _Vinted - Frontend_
+# _Vinted - Frontend_ 👛
 
 ## About this project
 
@@ -7,30 +7,33 @@ This is the replica of Vinted, online marketplace of secondhand items.
 Project built with React JS and deployed on
 [_Netlify_](https://musing-swartz-5b75d9.netlify.app/)
 
-Backend of this project can be found  [_here_](https://github.com/EkaterinaJego/Vinted_backend)
+Backend of this project can be found [_👉 here_](https://github.com/EkaterinaJego/Vinted_backend)
 
-## How to run the project
+## How to run the project ⚙️
 
 ### Clone this repository :
 
-`git clone https://github.com/EkaterinaJego/Vinted_frontend`
+`git clone https://github.com/EkaterinaJego/Vinted_frontend`,
 
-### Install packages :
+`cd Vinted-frontend`
+
+### Install packages : 📦
 
 `yarn install`
 
-### Once installation is over, run it :
+### Once installation is over, run it : 👟
 
 `yarn start`
 
-## Main dependencies
+## Main dependencies 🍪
 
-- Axios
+- Axios 
 - Cors
-- JS Cookie
+- JS Cookie 
 - Fortawesome
-- Stripe
 - React
+- Stripe
+
 - React Range
 - React Router Dom
 - React Toggle

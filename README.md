@@ -7,6 +7,8 @@ This is the replica of Vinted, online marketplace of secondhand items.
 Project built with React JS and deployed on
 [_Netlify_](https://musing-swartz-5b75d9.netlify.app/)
 
+Backend of this project can be found  [_here_](https://github.com/EkaterinaJego/Vinted_backend)
+
 ## How to run the project
 
 ### Clone this repository :

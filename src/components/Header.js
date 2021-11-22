@@ -37,7 +37,7 @@ const Header = ({
         </div>
         <div className="filters">
           <div className="search">
-            <FontAwesomeIcon icon="search" className="searchicon" />
+           // <FontAwesomeIcon icon="search" className="searchicon" />
             <input
               type="text"
               placeholder="Recherche des articles"
